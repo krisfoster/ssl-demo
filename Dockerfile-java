@@ -1,0 +1,8 @@
+FROM ghcr.io/graalvm/graalvm-ce@sha256:24fb7be20ec879165dbeeb4a5b7d98287607fc8ef3ba07c715da4f0cd44ba4d1
+
+ARG JAR_FILE
+COPY ./target/${JAR_FILE} app.jar
+
+CMD sleep 10s && java $JAVA_OPTIONS -jar ./app.jar 8844 TLS /app/selfsigned.jks b0000m
+
+
