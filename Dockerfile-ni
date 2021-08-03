@@ -22,6 +22,6 @@ FROM ghcr.io/graalvm/graalvm-ce@sha256:24fb7be20ec879165dbeeb4a5b7d98287607fc8ef
 # Copy the built Native Image from the build time image into the runtime image
 COPY --from=BUILDER /org.example.dummyserver .
 
-CMD sleep 10s && /org.example.dummyserver 8844 TLS /app/selfsigned.jks b0000m
+CMD sleep 10s && /org.example.dummyserver 8844 TLS /app/security/selfsigned.jks b0000m
 
 

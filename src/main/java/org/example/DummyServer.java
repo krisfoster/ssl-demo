@@ -45,7 +45,7 @@ public class DummyServer extends Server {
     /**
      * Default location of the Key Store used for SSL
      */
-    private static String DefaultKeyLocation = "/app/selfsigned.jks";
+    private static String DefaultKeyStore = "/app/security/selfsigned.jks";
 
     /**
      * Constructs a ClassFileServer.
@@ -63,7 +63,7 @@ public class DummyServer extends Server {
         System.out.println(
                 "USAGE: java DummyServer port [TLS keyStorePath]");
         int port = DefaultServerPort;
-        String keyPath = DefaultKeyLocation;
+        String keyStore = DefaultKeyStore;
         String password = DEFAULT_TOP_SECRET_PASSWORD;
 
         // Process the command line options
@@ -76,14 +76,14 @@ public class DummyServer extends Server {
             type = args[1];
         }
         if (args.length >= 3) {
-            keyPath = args[2];
+            keyStore = args[2];
         }
         if (args.length >= 4) {
             password = args[3];
         }
 
         try {
-            ServerSocketFactory ssf = DummyServer.getServerSocketFactory(type, keyPath, password);
+            ServerSocketFactory ssf = DummyServer.getServerSocketFactory(type, keyStore, password);
             ServerSocket ss = ssf.createServerSocket(port);
             new DummyServer(ss);
         } catch (IOException e) {

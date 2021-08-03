@@ -34,3 +34,9 @@ Then access the following URL with you browser - you will probably need to navig
 ## To Demo that the Native Image is loading the KeyStore from the fileSystem
 
 * Just remove the mount params to the `docker run` command - then there is no keystore file and the apps dies.
+
+## Notes & Links
+
+* [Java KeySTore & TrustStore Differences](https://www.baeldung.com/java-keystore-truststore-difference)
+* [How to change the Default Trustore Path, Java](https://stackoverflow.com/questions/59772588/how-to-change-default-truststore-path)
+* [Generating a new TrustStore](https://docs.oracle.com/cd/E19509-01/820-3503/6nf1il6er/index.html)
