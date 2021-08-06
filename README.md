@@ -142,3 +142,4 @@ Then access the following URL with you browser - you will probably need to navig
 * [Generating a new TrustStore](https://docs.oracle.com/cd/E19509-01/820-3503/6nf1il6er/index.html)
 * [Load root certificates at image build time #1999](https://github.com/oracle/graal/issues/1999)
 * [Allow root certificates to be configured at run time of native image #3091](https://github.com/oracle/graal/pull/3091)
+* [Quarkus: Native & SSL](https://quarkus.io/guides/native-and-ssl#the-truststore-path)
