@@ -93,12 +93,12 @@ public class DummyServer extends Server {
         }
     }
 
-    private static ServerSocketFactory getServerSocketFactory(final String type, final String keyPath, final String password) {
+    private static ServerSocketFactory getServerSocketFactory(final String type, final String keyStore, final String password) {
         //
         if (type.equals(TLS)) {
             SSLServerSocketFactory ssf = null;
             try {
-                // set up key manager to do server authentication
+                // Set up KeyStore (containing out certs & keys) for use in SSL
                 SSLContext ctx;
                 KeyManagerFactory kmf;
                 KeyStore ks;
@@ -109,7 +109,7 @@ public class DummyServer extends Server {
                 ks = KeyStore.getInstance(JKS);
 
                 // Load the KeyStore
-                ks.load(new FileInputStream(keyPath), passphrase);
+                ks.load(new FileInputStream(keyStore), passphrase);
                 kmf.init(ks, passphrase);
                 ctx.init(kmf.getKeyManagers(), null, null);
 

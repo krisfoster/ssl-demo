@@ -1,7 +1,7 @@
 FROM ghcr.io/graalvm/graalvm-ce@sha256:24fb7be20ec879165dbeeb4a5b7d98287607fc8ef3ba07c715da4f0cd44ba4d1 as BUILDER
 
 ARG JAR_FILE
-COPY ./target/${JAR_FILE} app.jar
+COPY ${JAR_FILE} app.jar
 
 # Install native image
 RUN gu install native-image
@@ -13,6 +13,7 @@ RUN native-image \
       --no-fallback \
       --no-server \
       --enable-all-security-services \
+      --enable-url-protocols=https \
       -cp ./app.jar \
       org.example.DummyServer
 
@@ -22,6 +23,6 @@ FROM ghcr.io/graalvm/graalvm-ce@sha256:24fb7be20ec879165dbeeb4a5b7d98287607fc8ef
 # Copy the built Native Image from the build time image into the runtime image
 COPY --from=BUILDER /org.example.dummyserver .
 
-CMD sleep 10s && /org.example.dummyserver 8844 TLS /app/security/selfsigned.jks b0000m
+CMD sleep 10s && /org.example.dummyserver -Djavax.net.ssl.trustStore=./security/testTrustStore -Djavax.net.ssl.trustStorePassword=b0000m 8844 TLS /app/security/selfsigned.jks b0000m
 
 
